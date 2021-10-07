@@ -1,0 +1,137 @@
+<AddTradeLabel@Label>
+    bold: True
+    font_size: (root.width + root.height) / 11
+    background_color: (0,1,1,1)
+
+<AddTradeInput@TextInput>
+    multiline: False
+    cursor_blink: True
+    font_size: root.width / 16
+    halign: "center"
+    write_tab: False
+    padding: 0, self.height / 6, 0 ,0
+    do_wrap: True
+
+<AddTradeToggle@ToggleButton>
+    group: "direction"
+    font_size: root.width / 8
+    bold: True
+
+<TabPanel>:
+
+    # Tab Panel properties
+    size_hint: 1, 1
+    pos_hint: {"center_x": .5, "center_y": .5}
+    do_default_tab: False
+
+    # Tab Header Properties
+    tab_width: (root.width / 2) - 2.5
+    tab_height: 30
+
+    # Active Trades Tab
+    TabbedPanelItem:
+        text: "Active Trades"
+        id: Active_Trades
+        bold: True
+        on_release: root.update_grid()
+
+    # Add Trade Tab
+    TabbedPanelItem:
+        text: "Add Trade"
+        id: Add_Trades
+        bold: True
+
+        GridLayout:
+            cols: 2
+            orientation: "tb-lr"
+            spacing: 5
+            padding: 5
+
+            # Labels
+            AddTradeLabel:
+                text: "Date:"
+
+            AddTradeLabel:
+                text: "Symbol:"
+
+            AddTradeLabel:
+                text: "Direction:"
+
+            AddTradeLabel:
+                text: "Entry Price:"
+
+            AddTradeLabel:
+                text: "Exit 1:"
+
+            AddTradeLabel:
+                text: "Exit 2:"
+
+            AddTradeLabel:
+                text: "Exit 3:"
+
+            AddTradeLabel:
+                text: "Exit 4:"
+
+            AddTradeLabel:
+                text: "Stop Loss:"
+
+            AddTradeLabel:
+                text: ""
+
+            # Inputs
+            AddTradeInput:
+                id: Date
+                text: root.date
+                hint_text: "dd/mm/yyyy"
+
+            AddTradeInput:
+                id: Symbol
+                hint_text: "BTC/USDT"
+
+            GridLayout:
+                cols: 2
+
+                AddTradeToggle:
+                    id: Long
+                    text: "Long"
+
+                AddTradeToggle:
+                    id: Short
+                    text: "Short"
+
+            AddTradeInput:
+                id: Entry_Price
+                input_filter: "float"
+                hint_text: "Entry Price"
+
+            AddTradeInput:
+                id: Exit1
+                hint_text: "Exit 1"
+                input_filter: "float"
+
+            AddTradeInput:
+                id: Exit2
+                hint_text: "Exit 2"
+                input_filter: "float"
+
+            AddTradeInput:
+                id: Exit3
+                hint_text: "Exit 3"
+                input_filter: "float"
+
+            AddTradeInput:
+                id: Exit4
+                hint_text: "Exit 4"
+                input_filter: "float"
+
+            AddTradeInput:
+                id: Stop_Loss
+                hint_text: "Stop Loss"
+                input_filter: "float"
+
+            Button:
+                id: Save
+                text: "Save"
+                font_size: root.width / 18
+                bold: True
+                on_release: root.data_validation()
